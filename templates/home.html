@@ -1,0 +1,53 @@
+{% include 'nav.html' %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>home</title>
+</head>
+
+<body>
+  <div class="container">
+    {% for message in messages %}
+    <div class="alert alert-danger my-2" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+
+    <div class="row">
+      {% for product in products %}
+      <div class="col-lg-4 col-md-12">
+        <div class="card mt-4 mx-auto" style="width: 18rem;min-height: 350px;">
+          <img src="{{ product.p_img.url }}" class="mx-auto mt-2" style="max-width:100px;
+        max-height:100px;
+        width:auto;
+        height:auto;">
+          <div class="card-body my-auto">
+            <a href="{% url 'product' p_id=product.p_id %}" style="color: black;text-decoration: none;">
+              <h5 class="card-title">{{product.p_name}}</h5>
+              <p class="card-text">{{product.p_desc|truncatechars:50 }}</p>
+              <h5 class="card-title">{{product.p_price}}₹ only</h5>
+            </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'placeOrder' p_id=product.p_id buyer_id=request.user.id %}" class="btn btn-outline-danger btn-sm">buy now</a>
+            {% else %}
+            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal"
+              data-target="#exampleModallogin">
+              Buy Now
+            </button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+</body>
+
+</html>

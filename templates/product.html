@@ -1,0 +1,23 @@
+{% include 'nav.html' %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>product</title>
+</head>
+
+<body>
+  <!-- Optional JavaScript; choose one of the two! -->
+  <div class="container">
+    <h4 class="my-4">{{product.p_name}}</h4>
+    <img src="{{product.p_img.url}}" width="30%" height="auto" class="mx-auto my-4">
+    <p>{{product.p_desc}}</p>
+    <h5>{{product.p_price}}₹ only</h5>
+    <a href="{% url 'placeOrder' p_id=product.p_id buyer_id=request.user.id %}" class="btn btn-outline-danger">buy now</a>
+
+
+  </div>
+</body>
+
+</html>
