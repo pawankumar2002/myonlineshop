@@ -1,5 +1,5 @@
 # myonlineshop
 
 #### Description
+An E-Commerce Website using Django framework
 
-A basic website which uses NEWS API and displays News related to Sports, Entertainment , Politics etc.
